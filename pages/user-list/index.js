@@ -32,12 +32,12 @@ export default class UserList extends Component {
         <div className="actions">
           <button 
             disabled={page===1}
-            onclick={this.prevpage}>
+            onClick={this.prevpage}>
               Anterior
           </button>
           <button 
             disabled={page===userInfo.total_pages}
-            onclick={this.nextPage}>
+            onClick={this.nextPage}>
               Proximo
             </button>
         </div>
@@ -46,7 +46,7 @@ export default class UserList extends Component {
   }
 
   loadUsers = async (page = 1) => {
-    const res = await api.get(`/users?per_page=3?page=${page}`);
+    const res = await api.get(`/users?per_page=3&page=${page}`);
     const { data, ...userInfo } = res.data;
     console.log(res);
     this.setState({ users: data, userInfo, page });
@@ -61,10 +61,11 @@ export default class UserList extends Component {
   }
 
   nextPage = () => {
-    consle.log("next");
+    console.log("next");
     const {page, userInfo} = this.state 
+    console.log("page " + page);
     if (page === userInfo.total_pages) return;
-    
+    console.log("next");
     const pageNumber = page -1;
     this.loadUsers(pageNumber);
   }
