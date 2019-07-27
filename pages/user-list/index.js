@@ -56,17 +56,14 @@ export default class UserList extends Component {
     const {page, userInfo} = this.state 
     if (page === 1) return;
     
-    const pageNumber = page + 1;
+    const pageNumber = page - 1;
     this.loadUsers(pageNumber);
   }
 
   nextPage = () => {
-    console.log("next");
     const {page, userInfo} = this.state 
-    console.log("page " + page);
     if (page === userInfo.total_pages) return;
-    console.log("next");
-    const pageNumber = page -1;
+    const pageNumber = page + 1;
     this.loadUsers(pageNumber);
   }
 }
