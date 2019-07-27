@@ -2,7 +2,7 @@ import React from 'react';
 import {
   BrowserRouter,
   Switch,
-  Routes
+  Route
 } from 'react-router-dom';
 
 import UserList from './pages/user-list';
@@ -11,8 +11,10 @@ import UserDetail from './pages/user-detail';
 const Routes = () => {
   <BrowserRouter>
     <Switch>
-      <Route path="/users/" component={UserList} />
+      <Route exact path="/" component={UserList} />
       <Route path="/users/:id" component={UserDetail} />
     </Switch>
   </BrowserRouter>
 }
+
+export default Routes;

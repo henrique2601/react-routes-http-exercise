@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from './components/Header';
-import UserList from './pages/user-list';
+import Routes from './routes';
 
 function App() {
   return (
     <div>
       <Header />
-      <UserList />
+      <Routes />
     </div>
   );
 }
