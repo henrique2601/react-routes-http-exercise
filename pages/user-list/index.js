@@ -12,18 +12,21 @@ export default class UserList extends Component {
   }
 
   render() {
+    const { users } = this.state;
     return(
-      <>
-        <h1>User List</h1>
-        <p>Teste de conteudo</p>
-      </>
+      <div className="user-list">
+        {
+          users
+        }
+      </div>
     )
   }
 
   loadUsers = async () => {
+    console.log("test");
     const res = await api.get(`/users?per_page=10?page=1`);
     console.log(res.data.data);
-    
+    console.log("test1");
     this.setState({ users: res.data.data });
   }
 }
