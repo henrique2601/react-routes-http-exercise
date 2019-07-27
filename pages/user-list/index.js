@@ -48,7 +48,6 @@ export default class UserList extends Component {
   loadUsers = async (page = 1) => {
     const res = await api.get(`/users?per_page=3&page=${page}`);
     const { data, ...userInfo } = res.data;
-    console.log(res);
     this.setState({ users: data, userInfo, page });
   }
 
