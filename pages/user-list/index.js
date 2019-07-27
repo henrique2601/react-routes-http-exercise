@@ -24,14 +24,22 @@ export default class UserList extends Component {
   )
 
   render() {
-    const { users } = this.state;
+    const { users, page, userInfo } = this.state;
 
     return (
       <div className="user-list">
         { users.map(user => this.rowUser(user)) }
         <div className="actions">
-          <button onclick={this.prevpage}>Anterior</button>
-          <button onclick={this.nextPage}>Proximo</button>
+          <button 
+            disabled={page===1}
+            onclick={this.prevpage}>
+              Anterior
+          </button>
+          <button 
+            disabled={page===userInfo.total_pages}
+            onclick={this.nextPage}>
+              Proximo
+            </button>
         </div>
       </div>
     );
@@ -40,7 +48,7 @@ export default class UserList extends Component {
   loadUsers = async (page = 1) => {
     const res = await api.get(`/users?per_page=3?page=${page}`);
     const { data, ...userInfo } = res.data;
-
+    console.log(res);
     this.setState({ users: data, userInfo, page });
   }
 
@@ -53,6 +61,7 @@ export default class UserList extends Component {
   }
 
   nextPage = () => {
+    consle.log("next");
     const {page, userInfo} = this.state 
     if (page === userInfo.total_pages) return;
     
